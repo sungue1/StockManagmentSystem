@@ -1,0 +1,2 @@
+# Stockmanagmentsystem
+school project
