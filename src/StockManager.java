@@ -1,82 +1,59 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class StockManager {
-	ArrayList<Account> accounts = new ArrayList<Account>();
-
-	public static void main(String[] args) {
-		int num = 0;
-		Scanner input = new Scanner(System.in);
+	Stock stock;            // 필드
+	Scanner input;          // 필드
+	
+	StockManager(Scanner input) {   // 생성자
+		this.input = input;
 		
-		while (num != 6) {
-			System.out.println("*** Stock Managment System Menu ***");
-			System.out.println("1. Buy the Stock");
-			System.out.println("2. Sell the Stock");
-			System.out.println("3. View your Stock");
-			System.out.println("4. Show your fluctuation");
-			System.out.println("5. Show a Menu");
-			System.out.println("6. Exit");
-			System.out.print("Select one number between 1-6: ");
-			num = input.nextInt();
-			System.out.println();
-			
-			switch(num) {
-			case 1 :
-				BuyStock();
-				break;
-			case 2 :
-				SellStock();
-				break;
-			case 3 :
-				ViewStock();
-				break;
-			case 4 :
-				fluctuation();
-				break;
-			case 5 :
-			}
-			
-		}
-
 	}
-	
-	public static void BuyStock() 
+
+	public void BuyStock()    // 메소드      주식 구매
 	{
-		Scanner input = new Scanner(System.in);
+		stock = new Stock();
 		System.out.print("Stock ticker :");
-		String ticker = input.next();
+		stock.stock = input.next();          // 구매할 주식종류
 		System.out.print("Buy Price :");
-	    double buyprice = input.nextDouble();
+		stock.buyprice = input.nextDouble(); // 구매가격
 		System.out.print("How many purchases :");
-		int purchases = input.nextInt();
+		stock.purchases = input.nextInt();   // 구매개수
 		System.out.print("Dividend :");
-		double dividend = input.nextDouble();
+		stock.dividend = input.nextDouble(); // 배당금
 	}
 	
-	public static void SellStock()
+	public void SellStock()    // 메소드      주식 판매 
 	{
-		Scanner input = new Scanner(System.in);
-		System.out.print("Stock ticker :");
-		String ticker = input.next();
-		System.out.print("Sell Price :");
-	    double sellprice = input.nextDouble();
-		System.out.print("How many sales :");
-		int sales = input.nextInt();
-		System.out.println("Earn :" );
+		System.out.print("Stock ticker :");   
+		String ticker = input.next();        // 판매할 주식종류
+		if (stock.equals(null)) {            // 입력한 종류가 없을 경우
+			System.out.println("You don't have this stock");
+			return;
+		}
+		
+		if (stock.stock.equals(ticker)) {    // 입력한 주식 종류가 있을 경우
+			System.out.print("Sell Price :");
+		    stock.sellprice = input.nextDouble();  // 판매가격
+			System.out.print("How many sales :");
+			stock.sales = input.nextInt();         // 판매개수
+			System.out.print("Earn :" );
+			stock.earn();                          // earn 메소드 사용
+			stock = null;                          // 구매한 주식 비우기
+			System.out.println("The stock is sell");
+		}
+		
 	}
 	
-	public static void ViewStock()
+	public void ViewStock()     // 메소드    보유한 주식 목록 출력
 	{
-		System.out.println();
+		System.out.println("Stock list");
+		stock.printInfo();      // printInfo 메소드 사용
 	}
 	
-	public static void fluctuation()
+	public void fluctuation()   // 메소드     거래로 인한 이익, 손해 출력
 	{
-		System.out.print("Stock ticker :");	
+		System.out.print("Earn history : ");
+		stock.earn();
 	}
 	
-
 }
-
-
-
