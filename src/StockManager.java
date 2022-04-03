@@ -50,7 +50,7 @@ public class StockManager {
 		stock.printInfo();      // printInfo 메소드 사용
 	}
 	
-	public void fluctuation()   // 메소드     거래로 인한 이익, 손해 출력
+	public void fluctuation()   // 메소드     거래로 인한 이익, 손해 출력  *주식 판매와 겹쳐서 바꿀 예정입니다.
 	{
 		System.out.print("Earn history : ");
 		stock.earn();
