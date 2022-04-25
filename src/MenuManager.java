@@ -13,7 +13,7 @@ public class MenuManager {
 			System.out.println("*** Stock Managment System Menu ***");
 			System.out.println("1. Buy the Stock");
 			System.out.println("2. Sell the Stock");
-			System.out.println("3. View your Stock");
+			System.out.println("3. View your Stocks");
 			System.out.println("4. Show your fluctuation");
 			System.out.println("5. Show a Menu");
 			System.out.println("6. Exit");
@@ -29,7 +29,7 @@ public class MenuManager {
 				stock.SellStock();
 				break;
 			case 3 :
-				stock.ViewStock();
+				stock.ViewStocks();
 				break;
 			case 4 :
 				stock.fluctuation();

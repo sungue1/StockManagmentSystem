@@ -1,59 +1,84 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import stock.KoreanStock;
+import stock.Stock;
+
 public class StockManager {
-	Stock stock;            // 필드
-	Scanner input;          // 필드
-	
+	ArrayList<Stock> stocks = new ArrayList<Stock>();            // 필드
+	Scanner input;
+
 	StockManager(Scanner input) {   // 생성자
 		this.input = input;
-		
+
 	}
 
-	public void BuyStock()    // 메소드      주식 구매
-	{
-		stock = new Stock();
-		System.out.print("Stock ticker :");
-		stock.stock = input.next();          // 구매할 주식종류
-		System.out.print("Buy Price :");
-		stock.buyprice = input.nextDouble(); // 구매가격
-		System.out.print("How many purchases :");
-		stock.purchases = input.nextInt();   // 구매개수
-		System.out.print("Dividend :");
-		stock.dividend = input.nextDouble(); // 배당금
+	public void BuyStock() {   // 메소드      주식 구매
+		int kind = 0;
+		while(kind !=1 && kind != 2) {
+			System.out.print("1 for Amercian stock  ");
+			System.out.print("2 for Korean stock ");
+			System.out.print("Select Stock Kind between 1 and 2:");
+			kind = input.nextInt(); 
+			if (kind == 1) {
+				Stock stock = new Stock();
+				stock.getUserInput(input);
+				stocks.add(stock);
+				break;
+			}
+			else if (kind == 2) {
+				Stock stock = new KoreanStock();
+				stock.getUserInput(input);
+				stocks.add(stock);
+				break;
+			}
+			else {
+				System.out.print("Select Stock Kind between 1 and 2:");
+			}
+		}
 	}
 	
 	public void SellStock()    // 메소드      주식 판매 
 	{
 		System.out.print("Stock ticker :");   
 		String ticker = input.next();        // 판매할 주식종류
-		if (stock.equals(null)) {            // 입력한 종류가 없을 경우
+		int index = -1;                                                                         // @@@
+		for(int i = 0; i<stocks.size();i++) {
+			if (stocks.get(i).getTicker().equals(ticker)) {    // 입력한 주식 종류가 있을 경우
+				index = i;
+				break;
+			}
+		}
+		
+		if(index >= 0) {
+			stocks.remove(index);
+			System.out.println("The stock" + ticker + " is selled");
+		}
+		
+		else {
 			System.out.println("You don't have this stock");
 			return;
 		}
 		
-		if (stock.stock.equals(ticker)) {    // 입력한 주식 종류가 있을 경우
-			System.out.print("Sell Price :");
-		    stock.sellprice = input.nextDouble();  // 판매가격
-			System.out.print("How many sales :");
-			stock.sales = input.nextInt();         // 판매개수
-			System.out.print("Earn :" );
-			stock.earn();                          // earn 메소드 사용
-			stock = null;                          // 구매한 주식 비우기
-			System.out.println("The stock is sell");
-		}
-		
 	}
 	
-	public void ViewStock()     // 메소드    보유한 주식 목록 출력
+	public void ViewStocks()     // 메소드    보유한 주식 목록 출력
 	{
 		System.out.println("Stock list");
-		stock.printInfo();      // printInfo 메소드 사용
+		for(int i = 0; i<stocks.size();i++) {
+			stocks.get(i).printInfo();
+		}
 	}
 	
-	public void fluctuation()   // 메소드     거래로 인한 이익, 손해 출력  *주식 판매와 겹쳐서 바꿀 예정입니다.
+	public void fluctuation()   // 메소드     
 	{
 		System.out.print("Earn history : ");
+		String ticker = input.next();
+		for(int i = 0; i<stocks.size();i++) {
+			Stock stock = stocks.get(i);
+		if(stock.equals(stock.getTicker())) {
 		stock.earn();
+		}
 	}
-	
+    }
 }
