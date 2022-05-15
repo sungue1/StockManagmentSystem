@@ -1,9 +1,10 @@
 package stock;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Stock {
+public abstract class Stock implements StockInput {
 	protected StockSector sector = StockSector.IT;
 	protected String ticker;
 	protected int buyprice;
@@ -34,41 +35,7 @@ public class Stock {
 		this.dividend = dividend;
 	}
 
-	public void printInfo() {
-		String ssector = "none";
-		switch (this.sector) {
-		case IT:
-			ssector = "IT";
-			break;
-		case Financial:
-			ssector = "Financial";
-			break;
-		case Consumerstaples:
-			ssector = "Consumerstaples";
-			break;
-		case Energy:
-			ssector = "Energy";
-			break;
-		default:
-		}
-		System.out.println("Sector:" + ssector + " Stock:" + ticker + "  Buy price:" + buyprice + "  Purchases:"
-				+ purchases + "  Dividend:" + dividend);
-	}
-
-	public void getUserInput(Scanner input) {
-		System.out.print("Stock ticker :");
-		String ticker = input.next();
-		this.setTicker(ticker);
-		System.out.print("Buy Price :");
-		int buyprice = input.nextInt();
-		this.setBuyprice(buyprice);
-		System.out.print("How many purchases :");
-		int purchases = input.nextInt();
-		this.setPurchases(purchases);
-		System.out.print("Dividend :");
-		Double dividend = input.nextDouble();
-		this.setDividend(dividend);
-	}
+	public abstract void printInfo();
 
 	public StockSector getSector() {
 		return sector;
@@ -82,15 +49,18 @@ public class Stock {
 		return ticker;
 	}
 
-	public void setTicker(String stock) {
-		this.ticker = stock;
+	public void setTicker(String ticker) {
+		this.ticker = ticker;
 	}
 
 	public double getBuyprice() {
 		return buyprice;
 	}
 
-	public void setBuyprice(int buyprice) {
+	public void setBuyprice(int buyprice) throws Exception {
+		if (buyprice < 0) {
+			throw new Exception();
+		}
 		this.buyprice = buyprice;
 	}
 
@@ -126,4 +96,91 @@ public class Stock {
 		this.dividend = dividend;
 	}
 
+	public void setStockTicker(Scanner input) {
+		System.out.print("Stock ticker: ");
+		String ticker = input.next();
+		this.setTicker(ticker);
+	}
+
+	public void setStockBuyprice(Scanner input) {
+		int buyprice = -1;
+		while (buyprice < 0) {
+			System.out.print("Stock Buyprice: ");
+			try {
+				buyprice = input.nextInt();
+				this.setBuyprice(buyprice);
+			} catch (Exception e) {
+				System.out.println("please put a number.");
+				if (input.hasNext()) {
+					input.next();
+				}
+			}
+		}
+	}
+
+	public void setStockPurchases(Scanner input) {
+		int purchases = -1;
+		while (purchases < 0) {
+			System.out.print("Stock Purchases: ");
+			try {
+				purchases = input.nextInt();
+				this.setPurchases(purchases);
+			} catch (Exception e) {
+				System.out.println("please put a number.");
+				if (input.hasNext()) {
+					input.next();
+				}
+			}
+		}
+	}
+
+	public void setStockDividend(Scanner input) {
+		Double dividend = (double) -1;
+		while (dividend < 0) {
+			System.out.print("Stock Dividend: ");
+			try {
+				dividend = input.nextDouble();
+				this.setDividend(dividend);
+			} catch (Exception e) {
+				System.out.println("please put a dividend rate.");
+				if (input.hasNext()) {
+					input.next();
+				}
+			}
+		}
+	}
+
+	public String getSectorString() {
+		String ssector = "none";
+		switch (this.sector) {
+		case IT:
+			ssector = "IT";
+			break;
+		case Financial:
+			ssector = "Financial";
+			break;
+		case Consumerstaples:
+			ssector = "Consumerstaples";
+			break;
+		case Energy:
+			ssector = "Energy";
+			break;
+		default:
+		}
+		return ssector;
+	}
+
+	public void setStockwithYN(Scanner input) {
+		char answer = 'x';
+		while (answer != 'y' && answer != 'Y' && answer != 'n' && answer != 'N') {
+			System.out.print("high stability ? (Y/N)");
+			answer = input.next().charAt(0);
+			if (answer == 'y' || answer == 'Y') {
+				System.out.println("You get a low lisk and low return");
+			} else if (answer == 'n' || answer == 'N') {
+				System.out.println("You get a high lisk and high return");
+			} else {
+			}
+		}
+	}
 }
