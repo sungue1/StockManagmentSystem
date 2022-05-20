@@ -1,5 +1,6 @@
 package manager;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -7,17 +8,19 @@ import java.util.Scanner;
 import stock.FinancialStock;
 import stock.ITStock;
 import stock.ConsumerstaplesStock;
-import stock.Stock;
 import stock.StockInput;
 import stock.StockSector;
 
-public class StockManager {
+public class StockManager implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 26097962964103716L;
+	
 	ArrayList<StockInput> stocks = new ArrayList<StockInput>();
-	Scanner input;
-
+	transient Scanner input;
 	StockManager(Scanner input) {
 		this.input = input;
-
 	}
 
 	public void BuyStock() {

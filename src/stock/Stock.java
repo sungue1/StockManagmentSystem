@@ -1,10 +1,15 @@
 package stock;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public abstract class Stock implements StockInput {
+public abstract class Stock implements StockInput, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4548182824638008866L;
 	protected StockSector sector = StockSector.IT;
 	protected String ticker;
 	protected int buyprice;
