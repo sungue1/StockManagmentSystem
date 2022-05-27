@@ -29,7 +29,7 @@ public class MenuManager {
 	public static void selectMenu(Scanner input, StockManager stockManager) {
 
 		int num = 0;
-		while (num != 6) {
+		while (num != 5) {
 			try {
 				showMenu();
 				num = input.nextInt();
@@ -57,7 +57,7 @@ public class MenuManager {
 				}
 			} 
 			catch (InputMismatchException e) {
-				System.out.println("Please put an integer between 1 and 6!");
+				System.out.println("Please put an integer between 1 and 5!");
 				if (input.hasNext()) {
 					input.next();
 				}
@@ -72,9 +72,8 @@ public class MenuManager {
 		System.out.println("2. Sell the Stock");
 		System.out.println("3. View your Stocks");
 		System.out.println("4. Eidt your Stock");
-		System.out.println("5. Show a Menu");
-		System.out.println("6. Exit");
-		System.out.print("Select one number between 1-6: ");
+		System.out.println("5. Exit");
+		System.out.print("Select one number between 1-5: ");
 	}
 	
 	public static StockManager getObject(String filename) {
