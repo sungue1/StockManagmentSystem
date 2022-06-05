@@ -7,9 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
-public class StockBuy extends JFrame {
+public class StockBuy extends JPanel {
+	
+	WindowFrame frame;
 
-	public StockBuy() {
+	public StockBuy(WindowFrame frame) {
+		this.frame = frame;
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new SpringLayout());
 
@@ -41,11 +45,9 @@ public class StockBuy extends JFrame {
 		panel.add(new JButton("cancel"));
 
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
+		
 
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		this.setContentPane(panel);
+		this.add(panel);
 		this.setVisible(true);
 
 	}

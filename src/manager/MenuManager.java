@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import gui.WindowFrame;
 import log.EventLogger;
 
 public class MenuManager {
@@ -21,7 +22,11 @@ public class MenuManager {
 		StockManager stockManager = getObject("stockmanager.ser");
 		if (stockManager == null) {
 			stockManager = new StockManager(input);
+		} else {
+			stockManager.input = input;
 		}
+		
+		WindowFrame frame = new WindowFrame(stockManager);
 		selectMenu(input, stockManager);
 		putObject(stockManager, "stockmanager.ser");
 	}
@@ -62,7 +67,7 @@ public class MenuManager {
 					input.next();
 				}
                 num = -1;
-			}
+			} 
 		}
 	}
 
@@ -97,7 +102,7 @@ public class MenuManager {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		} 
 
 		return stockManager;
 	}

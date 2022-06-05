@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import stock.FinancialStock;
 import stock.ITStock;
+import stock.Stock;
 import stock.ConsumerstaplesStock;
 import stock.StockInput;
 import stock.StockSector;
@@ -97,6 +98,14 @@ public class StockManager implements Serializable {
 		for (int i = 0; i < stocks.size(); i++) {
 			stocks.get(i).printInfo();
 		}
+	}
+	
+	public int size() {
+		return stocks.size();
+	}
+	
+	public StockInput get(int index) {
+		return (Stock) stocks.get(index);
 	}
 
 	public void EditStock() {
