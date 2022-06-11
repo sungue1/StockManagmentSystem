@@ -23,6 +23,16 @@ public class StockManager implements Serializable {
 	StockManager(Scanner input) {
 		this.input = input;
 	}
+	
+	public void BuyStock(String ticker, String price, String purchases, String dividend) {
+		StockInput stockInput = new ITStock(StockSector.IT);
+		stockInput.getUserInput(input);
+		stocks.add(stockInput);
+	}
+	
+	public void BuyStock(StockInput stockInput) {
+		stocks.add(stockInput);
+	}
 
 	public void BuyStock() {
 		int kind = 0;

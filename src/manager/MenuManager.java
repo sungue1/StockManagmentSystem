@@ -83,9 +83,6 @@ public class MenuManager {
 	
 	public static StockManager getObject(String filename) {
 		StockManager stockManager = null;
-		
-		
-		
 		try {
 			FileInputStream file = new FileInputStream(filename);
 			ObjectInputStream in = new ObjectInputStream(file);

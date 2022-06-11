@@ -21,6 +21,8 @@ public interface StockInput {
 	public void setDividend(double dividend);
 
 	public void printInfo();
+	
+	public void setStockTicker(Scanner input);
 
 	public void setStockBuyprice(Scanner input);
 

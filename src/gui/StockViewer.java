@@ -17,6 +17,36 @@ public class StockViewer extends JPanel {
 	
 	StockManager stockManager;
 
+	public StockManager getStockManager() {
+		return stockManager;
+	}
+
+	public void setStockManager(StockManager stockManager) {
+		this.stockManager = stockManager;
+		this.removeAll();
+		
+		DefaultTableModel model = new DefaultTableModel();
+		model.addColumn("Ticker");
+		model.addColumn("Price");
+		model.addColumn("Purchases");
+		model.addColumn("Dividend");
+		
+		for(int i = 0; i < stockManager.size(); i ++) {
+			Vector row = new Vector();
+			StockInput si= stockManager.get(i);
+			row.add(si.getTicker());
+			row.add(si.getBuyprice());
+			row.add(si.getPurchases());
+			row.add(si.getDividend());
+			model.addRow(row);
+		}
+
+		JTable table = new JTable(model);
+		JScrollPane sp = new JScrollPane(table);
+
+		this.add(sp);
+	}
+
 	public StockViewer(WindowFrame frame, StockManager stockManager) {
 		this.frame = frame;
 		this.stockManager = stockManager;

@@ -11,6 +11,7 @@ public class WindowFrame extends JFrame {
 	MenuSelection menuselection;
 	StockBuy stockbuy;
 	StockViewer stockviewer;
+	StockSell stocksell;
 	
 
 	public WindowFrame(StockManager stockManager) {
@@ -20,8 +21,9 @@ public class WindowFrame extends JFrame {
 		
 		this.stockManager = stockManager;
 		menuselection = new MenuSelection(this);
-		stockbuy = new StockBuy(this);
+		stockbuy = new StockBuy(this, this.stockManager);
 		stockviewer = new StockViewer(this, this.stockManager);
+		stocksell = new StockSell(this, this.stockManager);
 
 		this.setupPanel(menuselection);
 
@@ -57,6 +59,14 @@ public class WindowFrame extends JFrame {
 
 	public void setStockviewer(StockViewer stockviewer) {
 		this.stockviewer = stockviewer;
+	}
+	
+	public StockSell getStocksell() {
+		return stocksell;
+	}
+	
+	public void setStockSell(StockSell stocksell) {
+		this.stocksell = stocksell;
 	}
 
 }

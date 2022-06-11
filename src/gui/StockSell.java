@@ -11,12 +11,12 @@ import listeners.StockBuyCancelListener;
 import listeners.StockBuyListener;
 import manager.StockManager;
 
-public class StockBuy extends JPanel {
+public class StockSell extends JPanel {
 	
 	WindowFrame frame;
 	StockManager stockManager;
 
-	public StockBuy(WindowFrame frame, StockManager stockManager) {
+	public StockSell(WindowFrame frame, StockManager stockManager) {
 		this.frame = frame;
 		this.stockManager = stockManager;
 		
@@ -45,7 +45,7 @@ public class StockBuy extends JPanel {
 		JTextField fieldDividend = new JTextField(10);
 		labelDividend.setLabelFor(fieldDividend);
 		
-		JButton saveButton = new JButton("buy");
+		JButton saveButton = new JButton("sell");
 		saveButton.addActionListener(new StockBuyListener(fieldTicker, fieldPrice, fieldPurchases, fieldDividend, stockManager));
 		
 		JButton cancelButton = new JButton("cancel");
@@ -54,7 +54,7 @@ public class StockBuy extends JPanel {
 		panel.add(labelDividend);
 		panel.add(fieldDividend);
 
-		panel.add(saveButton);
+		panel.add(saveButton);	
 		panel.add(cancelButton);
 
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);

@@ -9,18 +9,18 @@ import gui.StockBuy;
 import gui.StockViewer;
 import gui.WindowFrame;
 
-public class ButtonAddListener implements ActionListener {
+public class ButtonSellListener implements ActionListener {
 
 	WindowFrame frame;
 
-	public ButtonAddListener(WindowFrame frame) {
+	public ButtonSellListener(WindowFrame frame) {
 		this.frame = frame;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		frame.getContentPane().removeAll();
-		frame.getContentPane().add(frame.getStockbuy());
+		frame.getContentPane().add(frame.getStocksell());
 		frame.revalidate();
 		frame.repaint();
 	}
