@@ -33,6 +33,10 @@ public class StockManager implements Serializable {
 	public void BuyStock(StockInput stockInput) {
 		stocks.add(stockInput);
 	}
+	
+	public void SellStock(StockInput stockInput) {
+		stocks.remove(stockInput);
+	}
 
 	public void BuyStock() {
 		int kind = 0;

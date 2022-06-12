@@ -33,7 +33,7 @@ public class StockSellListener implements ActionListener {
 		try {
 			((Stock) stock).setTicker(fieldTicker.getText());
 			stock.setPurchases(Integer.parseInt(fieldPurchases.getText()));
-			stockManager.BuyStock(stock);
+			stockManager.SellStock(stock);
 			putObject(stockManager, "stockmanager.ser");
 			stock.printInfo();
 		} catch (Exception e1) {
