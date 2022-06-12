@@ -9,6 +9,7 @@ import javax.swing.SpringLayout;
 
 import listeners.StockBuyCancelListener;
 import listeners.StockBuyListener;
+import listeners.StockSellListener;
 import manager.StockManager;
 
 public class StockSell extends JPanel {
@@ -29,35 +30,22 @@ public class StockSell extends JPanel {
 		panel.add(labelTicker);
 		panel.add(fieldTicker);
 
-		JLabel labelPrice = new JLabel("Price: ", JLabel.TRAILING);
-		JTextField fieldPrice = new JTextField(10);
-		labelPrice.setLabelFor(fieldPrice);
-		panel.add(labelPrice);
-		panel.add(fieldPrice);
-
 		JLabel labelPurchases = new JLabel("Purchases: ", JLabel.TRAILING);
 		JTextField fieldPurchases = new JTextField(10);
 		labelPurchases.setLabelFor(fieldPurchases);
 		panel.add(labelPurchases);
 		panel.add(fieldPurchases);
-
-		JLabel labelDividend = new JLabel("Dividend: ", JLabel.TRAILING);
-		JTextField fieldDividend = new JTextField(10);
-		labelDividend.setLabelFor(fieldDividend);
 		
 		JButton saveButton = new JButton("sell");
-		saveButton.addActionListener(new StockBuyListener(fieldTicker, fieldPrice, fieldPurchases, fieldDividend, stockManager));
+		saveButton.addActionListener(new StockSellListener(fieldTicker, fieldPurchases, stockManager));
 		
 		JButton cancelButton = new JButton("cancel");
 		cancelButton.addActionListener(new StockBuyCancelListener(frame));
-		
-		panel.add(labelDividend);
-		panel.add(fieldDividend);
 
 		panel.add(saveButton);	
 		panel.add(cancelButton);
 
-		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
+		SpringUtilities.makeCompactGrid(panel, 3, 2, 6, 6, 6, 6);
 		
 
 		this.add(panel);
