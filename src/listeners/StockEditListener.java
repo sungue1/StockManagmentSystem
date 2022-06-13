@@ -15,29 +15,44 @@ import stock.Stock;
 import stock.StockInput;
 import stock.StockSector;
 
-public class StockSellListener implements ActionListener {
+public class StockEditListener implements ActionListener {
 
 	JTextField fieldTicker;
+	JTextField fieldPrice;
 	JTextField fieldPurchases;
+	JTextField fieldDividend;
 	StockManager stockManager;
-
-	public StockSellListener(JTextField fieldTicker, StockManager stockManager) {
+	
+	
+	public StockEditListener(
+			JTextField fieldTicker,
+			JTextField fieldPrice,
+			JTextField fieldPurchases,
+			JTextField fieldDividend, 
+			StockManager stockManager) {
 		this.fieldTicker = fieldTicker;
+		this.fieldPrice = fieldPrice;
+		this.fieldPurchases = fieldPurchases;
+		this.fieldDividend = fieldDividend;
 		this.stockManager = stockManager;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		stockManager.SellStock(fieldTicker.getText());
-		putObject(stockManager, "stockmanager.ser");
+		StockInput stock = new ITStock(StockSector.IT); 
+		stockManager.EditStock(fieldTicker.getText(), fieldPrice.getText(), fieldPurchases.getText(), fieldDividend.getText());
+			putObject(stockManager, "stockmanager.ser");
+			stock.printInfo();
 	}
-
+	
 	public static void putObject(StockManager stockManager, String filename) {
-
+		
 		try {
 			FileOutputStream file = new FileOutputStream(filename);
 			ObjectOutputStream out = new ObjectOutputStream(file);
+			
 			out.writeObject(stockManager);
+			
 			out.close();
 			file.close();
 		} catch (FileNotFoundException e) {

@@ -29,23 +29,18 @@ public class StockSell extends JPanel {
 		labelTicker.setLabelFor(fieldTicker);
 		panel.add(labelTicker);
 		panel.add(fieldTicker);
-
-		JLabel labelPurchases = new JLabel("Purchases: ", JLabel.TRAILING);
-		JTextField fieldPurchases = new JTextField(10);
-		labelPurchases.setLabelFor(fieldPurchases);
-		panel.add(labelPurchases);
-		panel.add(fieldPurchases);
 		
-		JButton saveButton = new JButton("sell");
-		saveButton.addActionListener(new StockSellListener(fieldTicker, fieldPurchases, stockManager));
+		
+		JButton sellButton = new JButton("sell");
+		sellButton.addActionListener(new StockSellListener(fieldTicker, stockManager));
 		
 		JButton cancelButton = new JButton("cancel");
 		cancelButton.addActionListener(new StockBuyCancelListener(frame));
 
-		panel.add(saveButton);	
+		panel.add(sellButton);	
 		panel.add(cancelButton);
 
-		SpringUtilities.makeCompactGrid(panel, 3, 2, 6, 6, 6, 6);
+		SpringUtilities.makeCompactGrid(panel, 2, 2, 6, 6, 6, 6);
 		
 
 		this.add(panel);

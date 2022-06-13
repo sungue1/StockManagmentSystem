@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import listeners.ButtonAddListener;
+import listeners.ButtonEditListener;
 import listeners.ButtonSellListener;
 import listeners.ButtonViewListener;
 
@@ -33,6 +34,7 @@ public class MenuSelection extends JPanel {
 		button1.addActionListener(new ButtonAddListener(frame));
 		button2.addActionListener(new ButtonViewListener(frame));
 		button3.addActionListener(new ButtonSellListener(frame));
+		button4.addActionListener(new ButtonEditListener(frame));
 
 		panel1.add(label);
 		panel2.add(button1);

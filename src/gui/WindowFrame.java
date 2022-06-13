@@ -12,6 +12,7 @@ public class WindowFrame extends JFrame {
 	StockBuy stockbuy;
 	StockViewer stockviewer;
 	StockSell stocksell;
+	StockEdit stockedit;
 	
 
 	public WindowFrame(StockManager stockManager) {
@@ -69,4 +70,11 @@ public class WindowFrame extends JFrame {
 		this.stocksell = stocksell;
 	}
 
+	public StockEdit getStockedit() {
+		return stockedit;
+	}
+	
+	public void setStockedit(StockEdit stockedit) {
+		this.stockedit = stockedit;
+	}
 }

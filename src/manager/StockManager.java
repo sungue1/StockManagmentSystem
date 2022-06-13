@@ -30,6 +30,35 @@ public class StockManager implements Serializable {
 		stocks.add(stockInput);
 	}
 	
+	public void SellStock(String ticker) {
+		System.out.println("sell stock ticker: ");
+		int index = findIndex(ticker);
+		for(int i =0; i<stocks.size(); i++) {
+			if (stocks.get(i).getTicker().equals(ticker)) {
+				index = i;
+				break;
+			}
+		}
+		removefromStocks(index, ticker);
+	}
+	
+	public void EditStock(String ticker, String price, String purchases, String dividend) {
+		for (int i = 0; i < stocks.size(); i++) {
+			StockInput stock = stocks.get(i);
+			if (stock.getTicker().equals(ticker)) {
+				try {
+					stock.setBuyprice(Integer.parseInt(price));
+					stock.setPurchases(Integer.parseInt(purchases));
+					stock.setDividend(Double.parseDouble(dividend));
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+	}
+	
 	public void BuyStock(StockInput stockInput) {
 		stocks.add(stockInput);
 	}
@@ -97,8 +126,6 @@ public class StockManager implements Serializable {
 	public int removefromStocks(int index, String ticker) {
 		if (index >= 0) {
 			stocks.remove(index);
-			System.out.println("How much these you selled?");
-			int sellprice = input.nextInt();
 			System.out.println("The stock " + ticker + " is selled");
 			return 1;
 		} else {
